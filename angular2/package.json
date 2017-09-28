@@ -1,0 +1,62 @@
+{
+  "_location": "/angular2",
+  "_nodeVersion": "7.4.0",
+  "_npmVersion": "4.0.5",
+  "_phantomChildren": {},
+  "_requiredBy": [
+    "/"
+  ],
+  "_where": "C:\\Users\\noely\\generator-ilab",
+  "author": {
+    "name": "The Quantion Team"
+  },
+  "description": "Angular 2 yeoman",
+  "devDependencies": {
+    "ava": "^0.18.2",
+    "babel-eslint": "^7.1.1",
+    "chai": "^3.5.0",
+    "chai-spies": "^0.7.1",
+    "cross-spawn": "^5.0.1",
+    "eslint": "^3.15.0",
+    "eslint-config-xo-space": "^0.15.0",
+    "eslint-plugin-babel": "^4.0.1",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-eslint": "^3.0.1",
+    "gulp-exclude-gitignore": "^1.1.1",
+    "gulp-nsp": "^2.4.2",
+    "nyc": "^10.1.2"
+  },
+  "directories": {},
+  "eslintConfig": {
+    "extends": "xo-space/esnext"
+  },
+  "keywords": [
+    "yeoman-generator",
+    "yeoman",
+    "generator",
+    "gulp",
+    "gulpfile",
+    "cli",
+    "angular2"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "generator-angular2",
+  "nyc": {
+    "include": [
+      "generators/**/*.js"
+    ],
+    "exclude": [
+      "generators/**/templates/**"
+    ]
+  },
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "test": "gulp"
+  },
+  "version": "1.0.0"
+}
