@@ -1,18 +1,20 @@
-import * as angular from 'angular';
-import 'angular-mocks';
-import {hello} from './hello';
+import {HelloComponent} from './hello';
+import {TestBed, async} from '@angular/core/testing';
 
 describe('hello component', () => {
-  beforeEach(() => {
-    angular
-      .module('fountainHello', ['<%- templateUrl %>'])
-      .component('fountainHello', hello);
-    <%- modules !== 'systemjs' ? 'angular.mock.' : '' %>module('fountainHello');
-  });
-  it('should render hello world', <%- modules !== 'systemjs' ? 'angular.mock.' : '' %>inject(($rootScope: ng.IRootScopeService, $compile: ng.ICompileService) => {
-    const element = $compile('<fountain-hello>Loading...</fountain-hello>')($rootScope);
-    $rootScope.$digest();
-    const h1 = element.find('h1');
-    expect(h1.html()).toEqual('Hello World!');
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        HelloComponent
+      ]
+    });
+    TestBed.compileComponents();
   }));
+
+  it('should render hello world', () => {
+    const fixture = TestBed.createComponent(HelloComponent);
+    fixture.detectChanges();
+    const hello = fixture.nativeElement;
+    expect(hello.querySelector('h1').textContent).toBe('Hello World!');
+  });
 });

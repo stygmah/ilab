@@ -1,10 +1,11 @@
-module.exports = {
-<% if (modules === 'systemjs') { -%>
-  templateUrl: '<%- templateUrl %>',
-<% } else { -%>
-  template: require('./hello.html'),
-<% } -%>
-  controller: function () {
+var ng = require('@angular/core');
+
+module.exports = ng.Component({
+  selector: 'fountain-app',
+  template: require('./hello.html')
+})
+.Class({
+  constructor: function () {
     this.hello = 'Hello World!';
   }
-};
+});

@@ -1,26 +1,27 @@
-import * as angular from 'angular';
+import 'core-js/client/shim';
+import 'zone.js/dist/zone';
 
-import {hello} from './app/hello';
-<% if (router === 'uirouter') { -%>
-import 'angular-ui-router';
-import routesConfig from './routes';
-<% } -%>
+import '@angular/common';
+import 'rxjs';
 
-<% if (modules === 'webpack') { -%>
 import './index.<%- css %>';
 
-<% } -%>
-export const app: string = 'app';
+import {enableProdMode} from '@angular/core';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {AppModule} from './app<%- modules === 'systemjs' ? '/index' : '' %>';
 
-angular
-<% if (router === 'uirouter') { -%>
-  .module(app, ['ui.router'])
 <% if (modules === 'systemjs') { -%>
-  .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', routesConfig])
+import {production} from '@system-env';
+
+if (production) {
 <% } else { -%>
-  .config(routesConfig)
+declare var process: any;
+if (process.env.NODE_ENV === 'production') {
 <% } -%>
-<% } else { -%>
-  .module(app, [])
-<% } -%>
-  .component('app', hello);
+  enableProdMode();
+} else {
+  Error['stackTraceLimit'] = Infinity; // tslint:disable-line:no-string-literal
+  require('zone.js/dist/long-stack-trace-zone'); // tslint:disable-line:no-var-requires
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule);

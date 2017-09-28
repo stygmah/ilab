@@ -88,7 +88,8 @@ module.exports = class extends quantion {
         router: this.props.router,
         sample: this.props.sample,
         skipInstall: this.props.skipInstall,
-        skipCache: this.props.skipCache
+        skipCache: this.props.skipCache,
+        templateUrl: this.props.templateUrl
     };
     this.composeWith(require.resolve(`../${this.props.sample}/${this.props.modules === 'inject' ? 'inject' : 'modules'}`), options);
 
@@ -97,8 +98,10 @@ module.exports = class extends quantion {
 
   writing() {
     if (this.props.router !== 'none') {
-      this.copyTemplate(`src/${this.props.router}/routes.js`, 'src/app/routes.js', this.props);
+      this.fs.copyTpl(this.templatePath('src/routes.js'), this.destinationPath('src/routes.js'), this.props);
+      //this.copyTemplate(`src/${this.props.router}/routes.js`, 'src/app/routes.js', this.props);
     }
-    this.copyTemplate('src/index.html', 'src/index.html', {router: this.props.router});
+    this.fs.copyTpl(this.templatePath('src/index.html'), this.destinationPath('src/index.html'), {router: this.props.router});
+    //this.copyTemplate('src/index.html', 'src/index.html', {router: this.props.router});
   }
 };
