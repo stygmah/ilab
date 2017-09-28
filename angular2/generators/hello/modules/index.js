@@ -21,6 +21,6 @@ module.exports = class extends quantion {
       'src/app/hello.spec.js',
       'src/app/hello.html'
     ].map(file => 
-      this.fs.copyTpl(this.templatePath(file), this.destinationPath(file), {router: this.props.router}))
+      this.fs.copyTpl(this.templatePath(file), this.destinationPath(file),this.props))
   }
 };
