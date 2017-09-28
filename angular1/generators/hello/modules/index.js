@@ -1,15 +1,27 @@
 'use strict';
 
-const fountain = require('fountain-generator');
+const quantion = require('../../../../app/index.js');
+var fs = require('fs-extra');
 
-module.exports = fountain.Base.extend({
+module.exports = class extends quantion {
+
+  constructor(args, options) {
+    super(args, options);
+  }
+
+  initializing() {
+    return this.quantionPrompting();
+  }
+
   writing() {
     const files = [
-      'src/index.js',
-      'src/index.css',
-      'src/app/hello.js',
-      'src/app/hello.spec.js',
-      'src/app/hello.html'
+      'src/app.js',
+      'src/app.css',
+      'hello/helloController.js',
+      'hello/helloController.spec.js',
+      'hello/helloView.html',
+      'hello/helloRouting.js',
+      'hello/helloService.js'
     ];
 
     files.forEach(file => {
@@ -18,7 +30,7 @@ module.exports = fountain.Base.extend({
         /^src\/(.*\/[^.]*).*$/,
         `${prefix}$1.html`
       );
-      this.copyTemplate(file, file, {templateUrl});
+      this.fs.copyTpl(file, file, {templateUrl});
     });
   }
-});
+};

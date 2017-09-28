@@ -36,7 +36,6 @@ module.exports = class extends quantion {
         name: 'router',
         message: 'Would you like a router?',
         choices: [
-          // {name: 'Angular Component Router (Angular 2 router)', value: 'router'},
           {name: 'Angular UI Router', value: 'uirouter'},
           {name: 'None', value: 'none'}
         ]
@@ -89,16 +88,13 @@ module.exports = class extends quantion {
     };
 
     this.composeWith(require.resolve(`../${this.props.sample}/${this.props.modules === 'inject' ? 'inject' : 'modules'}`), options);
-    //this.composeWith(require.resolve('generator-fountain-gulp/generators/app'), options);
   }
 
   writing() {
 	
     if (this.props.router === 'uirouter') {
-		this.fs.copyTpl(this.templatePath('src/routes.js'), this.destinationPath('src/routes.js'), this.props);
-      //this.copyTemplate('src/routes.js', 'src/routes.js', this.props);
+		   this.fs.copyTpl(this.templatePath('src/routes.js'), this.destinationPath('src/routes.js'), this.props);
     }
-	this.fs.copyTpl(this.templatePath('src/index.html'), this.destinationPath('src/index.html'), {router: this.props.router});
-    //this.copyTemplate('src/index.html', 'src/index.html', {router: this.props.router});
+    this.fs.copyTpl(this.templatePath('src/layout.html'), this.destinationPath('src/layout.html'), {router: this.props.router});
   }
 };

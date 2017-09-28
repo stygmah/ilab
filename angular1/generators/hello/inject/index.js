@@ -5,22 +5,24 @@ var fs = require('fs-extra');
 
 module.exports = class extends quantion {
 
- constructor(args, options) {
+  constructor(args, options) {
     super(args, options);
   }
 
- initializing() {
+  initializing() {
     return this.quantionPrompting();
   }
 
- writing() {
+  writing() {
     [
-      'src/index.js',
-      'src/index.css',
-      'src/app/hello.js',
-      'src/app/hello.spec.js',
-      'src/app/hello.html'
+      'src/app.js',
+      'src/app.css',
+      'hello/helloController.js',
+      'hello/helloController.spec.js',
+      'hello/helloView.html',
+      'hello/helloRouting.js',
+      'hello/helloService.js'
     ].map(file => 
-      this.fs.copyTpl(this.templatePath(file), this.destinationPath(file), {router: this.props.router}))
+	  this.fs.copyTpl(this.templatePath(file), this.destinationPath(file), this.props))
   }
 };
